@@ -22,9 +22,7 @@ Route::get('/feed', function () {
     return view('feed');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+Route::get('/dashboard',  [DashboardController::class, 'index']);
 
 Route::get('/terms', function () {
     return view('terms');
