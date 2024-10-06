@@ -8,30 +8,13 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
  public function index(){
-   /*   $idea = new Idea();
-      $idea->idea = 'test';
-      $idea->likes = 0;
-      $idea->save();
-      return view('dashboard');
-   */
-     /*
-          $users = [
-              [
-                  'nome' => 'luca',
-                  'eta' => 21
-              ],
-              [
-                  'nome' => 'lucat',
-                  'eta' => 22
-              ]
-          ];
-          return view('users.profile',['usersList' =>$users]);
-          */
 
-     $ideas = Idea::all();
-
-     // Passa le idee alla view 'dashboard'
+    /* $ideas = Idea::all();
      return view('dashboard', compact('ideas'));
+     */
+     return view('dashboard',[
+         'ideas' => Idea::orderBy('created_at','DESC')->paginate(5)
+     ]);
       }
 
 }
