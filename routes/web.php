@@ -32,3 +32,7 @@ Route::get('/terms', function () {
 });
 
 Route::get('/profile', [DashboardController::class, 'index']);
+
+Route::get('/inps', function () {
+    return view('inps.inps');
+});
