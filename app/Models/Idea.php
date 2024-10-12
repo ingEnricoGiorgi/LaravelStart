@@ -10,5 +10,13 @@ class Idea extends Model
     use HasFactory;
 
     // Definisci i campi riempibili
-    protected $fillable = ['idea'];
+    protected $fillable = [
+        'idea',
+        'like'
+    ];
+
+    public function comments(){
+        //return $this->hasMany(Comment::class, 'idea_id', 'id');
+        return $this->hasMany(Comment::class);
+    }
 }

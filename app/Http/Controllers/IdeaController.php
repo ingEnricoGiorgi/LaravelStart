@@ -11,6 +11,7 @@ class IdeaController extends Controller
     public function show(Idea $idea)
     {
         //return view('ideas.show', ['idea' => $idea]);
+        //dd($idea->comments());
         return view('ideas.show', compact('idea'));
     }
 
