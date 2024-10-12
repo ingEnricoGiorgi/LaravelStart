@@ -23,7 +23,7 @@ Route::get('/feed', function () {
     return view('feed');
 });
 
-Route::get('/',  [DashboardController::class, 'index']);
+Route::get('/',  [DashboardController::class, 'index'])->name('dashboard');
 
 #Route::post('/idea',  [IdeaController::class, 'store'])->name('idea.create');
 
