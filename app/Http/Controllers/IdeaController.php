@@ -15,19 +15,16 @@ class IdeaController extends Controller
         return view('ideas.show', compact('idea'));
     }
 
-    public function create()
+    public function store()
     {
-        request()->validate([
-            'ideaTextarea' => 'required|min:5|max:240'
+        $validated = request()->validate([
+            'content' => 'required|min:5|max:240'
         ]);
+        //dd(request()->all());
 
-        $inputValue = request('ideaTextarea');
+        Idea::create($validated);
 
-        $idea = new Idea([
-            'idea' => $inputValue // Associa il valore al campo 'idea'
-        ]);
 
-        $idea->save();
         return redirect('/')->with('success', 'Idea salvata correttamente!');
 
     }
@@ -42,17 +39,22 @@ class IdeaController extends Controller
     public function edit(Idea $idea)
     {
         $editing = true;
+        //return view('ideas.show', ['idea' => $idea, 'editing' => $editing]);
+        //oppure
         return view('ideas.show', compact('idea', 'editing'));
     }
 
     public function update(Idea $idea)
     {
-        request()->validate([
+        $validated = request()->validate([
             'content' => 'required|min:5|max:240'
         ]);
-        //modifico il content che è l'id del form
-        $idea->idea = request('content','');
+        /*modifico il content che è l'id del form
+        $idea->content = request('content','');
         $idea->save();
-        return redirect()->route('ideas.show', $idea->id)->with('success', 'Idea aggioranata correttamente!');;
+        */
+
+        $idea->update($validated);
+        return redirect()->route('ideas.show', $idea->id)->with('success', 'Idea aggiornata correttamente!');
     }
 }

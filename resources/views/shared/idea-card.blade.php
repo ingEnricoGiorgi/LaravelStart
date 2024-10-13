@@ -28,7 +28,7 @@
                 @csrf
                 @method('put') <!--devo dichiarare che è un update request -->
                 <div class="mb-3">
-                    <textarea name="content" class="form-control" id="content" rows="3">{{$idea->idea}}</textarea>
+                    <textarea name="content" class="form-control" id="content" rows="3">{{$idea->content}}</textarea>
                     @error('content')
                     <span class="fs-6 text-danger">{{$message}}</span>
                     @enderror
@@ -39,7 +39,7 @@
             </form>
         @else
             <p class="fs-6 fw-light text-muted">
-                {{$idea->idea}}
+                {{$idea->content}}
             </p>
         @endif
         <div class="d-flex justify-content-between">

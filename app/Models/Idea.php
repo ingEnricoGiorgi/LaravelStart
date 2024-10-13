@@ -8,15 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class Idea extends Model
 {
     use HasFactory;
-
-    // Definisci i campi riempibili
-    protected $fillable = [
-        'idea',
-        'like'
+/*
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at',
     ];
+*/
+    //o guarded o fillable meglio guarded
+    // Definisci i campi riempibili
+     protected $fillable = [
+         'content',
+         'like'
+     ];
 
-    public function comments(){
+
+    public function comments()
+    {
         //return $this->hasMany(Comment::class, 'idea_id', 'id');
+        //Una idea può avere molti commenti associati
         return $this->hasMany(Comment::class);
     }
 }
