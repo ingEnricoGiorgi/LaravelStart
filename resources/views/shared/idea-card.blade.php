@@ -23,7 +23,8 @@
         </div>
     </div>
     <div class="card-body">
-        @if($editing ?? false) <!--se non è impostata metto false di base -->
+        @if($editing ?? false)
+            <!--se non è impostata metto false di base -->
             <form action="{{route('ideas.update', $idea->id)}}" method="post">
                 @csrf
                 @method('put') <!--devo dichiarare che è un update request -->
@@ -34,7 +35,7 @@
                     @enderror
                 </div>
                 <div class="">
-                    <button type="submit" class="btn btn-dark mb-2 btn-sm"> Update </button>
+                    <button type="submit" class="btn btn-dark mb-2 btn-sm"> Update</button>
                 </div>
             </form>
         @else
