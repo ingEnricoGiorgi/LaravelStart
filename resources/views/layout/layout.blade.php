@@ -16,7 +16,6 @@
 </head>
 
 <body>
-<h1>CIAO</h1>
 @include('layout.nav')
 <div class="container py-4">
 {{-- content goes here --}}
