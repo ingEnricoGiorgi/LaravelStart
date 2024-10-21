@@ -18,6 +18,7 @@ class Idea extends Model
     //o guarded o fillable meglio guarded
     // Definisci i campi riempibili
      protected $fillable = [
+         'user_id',
          'content',
          'like'
      ];
@@ -25,8 +26,14 @@ class Idea extends Model
 
     public function comments()
     {
-        //return $this->hasMany(Comment::class, 'idea_id', 'id');
         //Una idea può avere molti commenti associati
         return $this->hasMany(Comment::class);
     }
+
+    public function user()
+    {
+        //Una idea può avere molti commenti associati
+        return $this->belongsTo(User::class);
+    }
+
 }

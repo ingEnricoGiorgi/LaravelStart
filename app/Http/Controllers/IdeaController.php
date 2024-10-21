@@ -10,8 +10,6 @@ class IdeaController extends Controller
 
     public function show(Idea $idea)
     {
-        //return view('ideas.show', ['idea' => $idea]);
-        //dd($idea->comments());
         return view('ideas.show', compact('idea'));
     }
 
@@ -21,6 +19,7 @@ class IdeaController extends Controller
             'content' => 'required|min:5|max:240'
         ]);
         //dd(request()->all());
+        $validated['user_id'] = auth()->id();
 
         Idea::create($validated);
 
@@ -29,30 +28,38 @@ class IdeaController extends Controller
 
     }
 
-    public function destroy(Idea $id)
+    public function destroy(Idea $idea)
     {
+        /*dd($idea);
+        echo($idea->user_id.' + '.auth()->id());
+        exit;*/
+        if (!auth()->check() || $idea->user_id !== auth()->id()) {
+            abort(403, 'Current user unauthorized');
+        }
 
-        $id->delete();
+        $idea->delete();
         return redirect('/')->with('success', 'Idea cancellata correttamente!');
     }
 
     public function edit(Idea $idea)
     {
-        $editing = true;
-        //return view('ideas.show', ['idea' => $idea, 'editing' => $editing]);
+        $editing = false;
+        if ($idea->user_id == auth()->id()) {
+            $editing = true;
+        }
         //oppure
         return view('ideas.show', compact('idea', 'editing'));
     }
 
     public function update(Idea $idea)
     {
+        if ($idea->user_id !== auth()->id()) {
+            abort(404);
+        }
+
         $validated = request()->validate([
             'content' => 'required|min:5|max:240'
         ]);
-        /*modifico il content che è l'id del form
-        $idea->content = request('content','');
-        $idea->save();
-        */
 
         $idea->update($validated);
         return redirect()->route('ideas.show', $idea->id)->with('success', 'Idea aggiornata correttamente!');

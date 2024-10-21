@@ -17,7 +17,10 @@ return new class extends Migration
     {
         Schema::create('ideas', function (Blueprint $table) {
             $table->id();
-            $table->string('idea');
+            //constrained= only for user that exist
+            //cascade on delete se viene eliminato da user_id a cne su ideas verra eliminata
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('content');
             $table->unsignedInteger('likes')->default(0);
             $table->timestamps();
         });
