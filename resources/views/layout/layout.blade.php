@@ -16,6 +16,9 @@
 </head>
 
 <body>
+<div id ='app'>
+   <h1>Vue Component</h1>
+</div>
 @include('layout.nav')
 <div class="container py-4">
 {{-- content goes here --}}
