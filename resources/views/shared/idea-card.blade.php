@@ -9,17 +9,19 @@
                         </a></h5>
                 </div>
             </div>
+
             <div>
                 <form method="POST" action="{{route('ideas.destroy', $idea->id)}}">
                     @csrf
                     @method('delete')
                     <a class='mx-2' href="{{route('ideas.show', $idea->id)}}">Show</a>
+                    @auth()
                     <a class='mx-2' href="{{route('ideas.edit', $idea->id)}}">Edit</a>
                     <button class="btn btn-danger btn-sm">X</button>
+                    @endauth
                 </form>
 
             </div>
-
         </div>
     </div>
     <div class="card-body">

@@ -21,36 +21,38 @@ use Illuminate\Support\Facades\Route;
     return view('welcome');
 });*/
 
+Route::get('/',  [DashboardController::class, 'index'])->name('dashboard');
+
+/*Route::group(['prefix' => 'ideas/', 'as'=>'ideas.', 'middleware'=>['auth']], function () {
+
+
+   // Route::post('',  [IdeaController::class, 'store'])->name('store')->withoutMiddleware(['auth']);
+
+   // Route::get('{idea}',  [IdeaController::class, 'show'])->name('show')->withoutMiddleware(['auth']);
+
+   // Route::delete('{idea}',  [IdeaController::class, 'destroy'])->name('destroy');
+
+   // Route::get('{idea}/edit',  [IdeaController::class, 'edit'])->name('edit');
+
+   // Route::put('{idea}',  [IdeaController::class, 'update'])->name('update');
+
+    Route::post('{idea}/comments',  [CommentController::class, 'store'])->name('comments.store');
+
+});*/
+//fa tutte è 7 le route
+Route::resource('ideas', IdeaController::class)->except(['index','create','show'])-> middleware('auth');
+
+Route::resource('ideas', IdeaController::class)->only(['show']);
+
+Route::resource('ideas.comments',  CommentController::class)->only(['store'])->middleware('auth');
+
+//FINE 7 routes
+
 Route::get('/feed', function () {
     return view('feed');
 });
 
 Route::get('/',  [DashboardController::class, 'index'])->name('dashboard');
-
-#Route::post('/idea',  [IdeaController::class, 'store'])->name('idea.create');
-
-Route::post('/ideas',  [IdeaController::class, 'store'])->name('ideas.store');
-
-Route::get('/ideas/{idea}',  [IdeaController::class, 'show'])->name('ideas.show');
-
-Route::delete('/ideas/{idea}',  [IdeaController::class, 'destroy'])->name('ideas.destroy')->middleware('auth');
-
-Route::get('/ideas/{idea}/edit',  [IdeaController::class, 'edit'])->name('ideas.edit')->middleware('auth');
-
-Route::put('/ideas/{idea}',  [IdeaController::class, 'update'])->name('ideas.update')->middleware('auth');
-
-Route::post('/ideas/{idea}/comments',  [CommentController::class, 'store'])->name('ideas.comments.store')->middleware('auth');
-
-Route::get('/register',  [AuthController::class, 'register'])->name('register');
-
-Route::post('/register',  [AuthController::class, 'store']);
-
-Route::get('/login',  [AuthController::class, 'login'])->name('login');
-
-Route::post('/login',  [AuthController::class, 'authenticate']);
-
-Route::post('/logout',  [AuthController::class, 'logout'])->name('logout');
-
 
 Route::get('/terms', function () {
     return view('terms');
