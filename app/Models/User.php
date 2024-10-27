@@ -43,7 +43,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function Ideas(){
-        return $this->hasMany(Idea::class);
+    public function ideas(){
+        return $this->hasMany(Idea::class)->orderBy('created_at', 'desc');
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class)->latest();
     }
 }
