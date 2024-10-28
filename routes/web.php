@@ -57,11 +57,13 @@ Route::get('/',  [DashboardController::class, 'index'])->name('dashboard');
 
 Route::resource('users', UserController::class)->only(['show','edit','update'])->middleware('auth');
 
+Route::get('/profile', [UserController::class, 'profile'])->name('profile')->middleware('auth');
+
 Route::get('/terms', function () {
     return view('terms');
 });
 
-Route::get('/profile', [DashboardController::class, 'index']);
+#Route::get('/profile', [DashboardController::class, 'index']);
 
 Route::get('/inps', function () {
     return view('inps.inps');
