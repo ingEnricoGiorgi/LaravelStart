@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WelcomeEmail;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -28,6 +31,9 @@ class AuthController extends Controller
                 'password' => Hash::make($validated['password'])
             ]
         );
+        //send WELCOME Email
+        Mail::to($validated['email'])->send(new WelcomeEmail($user));
+
         return redirect('/')->with('success', 'Account created successfull');
     }
 
