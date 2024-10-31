@@ -67,10 +67,10 @@ Route::post('users/{user}/unfollow',  [FollowerController::class, 'unfollow'])->
 
 Route::get('/terms', function () {
     return view('terms');
-});
+})->name('terms')   ;
 
 #Route::get('/profile', [DashboardController::class, 'index']);
 
 Route::get('/inps', function () {
     return view('inps.inps');
-});
+})->name('inps')   ;
