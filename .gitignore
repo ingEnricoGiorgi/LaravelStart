@@ -17,3 +17,6 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+/docker/ # Ignora configurazioni Docker
+/.docker/ # Se ci sono file di configurazione Docker specifici
+/.cache/ # Se ci sono cache specifiche del progetto
