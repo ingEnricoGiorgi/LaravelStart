@@ -3,8 +3,8 @@ FROM php:8.1-fpm
 
 # Installa l'estensione pdo_mysql e xdebug
 #RUN docker-php-ext-install pdo pdo_mysql
-RUN pecl install xdebug \
-    && docker-php-ext-enable xdebug
+#RUN pecl install xdebug \
+    #&& docker-php-ext-enable xdebug
 
 
 # Aggiorna i pacchetti e installa curl
