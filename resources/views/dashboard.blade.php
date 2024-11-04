@@ -1,6 +1,8 @@
 @extends('layout.layout')
 @section('content')
     <?php #phpinfo(); ?>
+    @livewire('show-posts')
+
     <div class="row">
         <div class="col-3">
             @include('shared.left-sidebar')
