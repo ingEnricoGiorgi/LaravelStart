@@ -12,8 +12,11 @@ class DashboardController extends Controller
     {
         #Preview email for testing purpose
         #return new WelcomeEmail(auth()->user());
-
+        #EAGER LOADING
+        #user e comments.user sono relazioni dentro i controller idea s Comment
+        #$ideas = Idea::with('user','comments.user')->orderBy('created_at', 'DESC');
         $ideas = Idea::orderBy('created_at', 'DESC');
+
         //verifica se nel form input ha nome search
 
         //idea è il campo del database
