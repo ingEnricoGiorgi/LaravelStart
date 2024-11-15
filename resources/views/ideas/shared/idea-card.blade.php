@@ -16,8 +16,8 @@
                     @method('delete')
                     <a class='mx-2' href="{{route('ideas.show', $idea->id)}}">Show</a>
                     @auth()
-                    <a class='mx-2' href="{{route('ideas.edit', $idea->id)}}">Edit</a>
-                    <button class="btn btn-danger btn-sm">X</button>
+                        <a class='mx-2' href="{{route('ideas.edit', $idea->id)}}">Edit</a>
+                        <button class="btn btn-danger btn-sm">X</button>
                     @endauth
                 </form>
 
@@ -46,11 +46,9 @@
             </p>
         @endif
         <div class="d-flex justify-content-between">
-            <div>
-                <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-heart me-1">
-                                        </span> {{$idea->likes}}
-                </a>
-            </div>
+
+            @include('ideas.shared.like-button')
+
             <div>
                                     <span class="fs-6 fw-light text-muted">
                                         <span class="fas fa-clock">

@@ -10,20 +10,20 @@
         <div class="col-6">
             @include('shared.success-message')
             {{--@include('shared.error-message')--}}
-            @include('shared.submit-idea')
+            @include('ideas.shared.submit-idea')
             @if($ideas->isEmpty())
                 <h2 class="text-center">NO RESULTS FOUND</h2>
 
             @else
-            @foreach($ideas as $idea)
+                @foreach($ideas as $idea)
+                    <div class="mt-3">
+                        @include('ideas.shared.idea-card')
+                    </div>
+                @endforeach
+                <!-- PAGINAZIONE -->
                 <div class="mt-3">
-                    @include('shared.idea-card')
+                    {{$ideas->withQueryString()->links()}}
                 </div>
-            @endforeach
-            <!-- PAGINAZIONE -->
-            <div class="mt-3">
-                {{$ideas->withQueryString()->links()}}
-            </div>
             @endif
 
         </div>
